@@ -1,0 +1,63 @@
+:root {
+	--bg: #f6f8fa;
+	--accent: #2b6cb0;
+	--accent-strong: #3182ce;
+	--muted: #666666;
+	--surface: #ffffff;
+	--muted-bg: #f7fafc;
+
+:root{--accent:#2b6cb0;--muted:#666;--bg:#f6f8fa;--panel-gap:12px}
+*{box-sizing:border-box}
+body{margin:0;padding:18px;font-family:Segoe UI,Arial,Helvetica,sans-serif;background:var(--bg);color:#111}
+.container{max-width:980px;margin:0 auto;background:#fff;padding:18px;border-radius:10px}
+
+#event-panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--panel-gap)}
+
+.event-panel{background:#fff;padding:12px;border-radius:8px;border-left:6px solid transparent;box-shadow:0 6px 18px rgba(0,0,0,0.04)}
+.panel-head{display:flex;justify-content:space-between;align-items:center}
+.panel-head h3{margin:0;font-size:1rem}
+.panel-head .clear-log{background:transparent;border:1px solid #e6e6e6;padding:6px;border-radius:6px;cursor:pointer}
+.event-panel p{margin:8px 0;color:#444;font-size:0.95rem}
+.event-control{display:inline-block;padding:8px;border-radius:6px;border:1px solid #eaeaea;background:#fafafa;cursor:pointer}
+.box{border:1px dashed #e2e8f0}
+.event-log{margin-top:8px;font-size:0.9rem;color:#222;min-height:36px;max-height:90px;overflow:auto;padding:6px;background:#fbfbfb;border-radius:6px;border:1px solid #f0f0f0}
+.log-entry{font-size:0.85rem;padding:4px 0;border-bottom:1px dashed #eee}
+
+.flash{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.06)}
+
+.accent-click{border-left-color:#3182ce}
+.accent-dbl{border-left-color:#2b6cb0}
+.accent-down{border-left-color:#dd6b20}
+.accent-enter{border-left-color:#38a169}
+.accent-leave{border-left-color:#805ad5}
+.accent-move{border-left-color:#0bc5ea}
+.accent-ctx{border-left-color:#e53e3e}
+.accent-key{border-left-color:#d53f8c}
+
+@media (max-width:520px){.event-control{width:100%;text-align:center}}
+
+.box {
+	margin-top: 12px;
+	padding: 12px;
+	border-radius: 6px;
+	border: 1px dashed #cbd5e0;
+}
+
+#log {
+	min-height: 40px;
+	padding: 8px;
+	background: var(--muted-bg);
+	border-radius: 4px;
+	border: 1px solid #e2e8f0;
+	color: var(--muted);
+}
+
+#summary {
+	background: #0f172a;
+	color: #e6fffa;
+	padding: 10px;
+	border-radius: 6px;
+	overflow: auto;
+    white-space: pre-wrap;
+}
+}

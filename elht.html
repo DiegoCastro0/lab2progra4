@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Laboratorio 2 — Eventos interactivos</title>
+	<style>
+		:root{--bg:#f6f8fa;--accent:#3182ce;--muted:#666}
+		*{box-sizing:border-box}
+		body{margin:0;background:var(--bg);font-family:Segoe UI,Arial,Helvetica,sans-serif;color:#111;padding:16px}
+		.container{max-width:980px;margin:0 auto;background:#fff;padding:16px;border-radius:8px}
+		h1{margin:0 0 12px}
+	
+		#event-panels{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+		.event-panel{background:#fff;padding:10px;border-radius:8px;border-left:6px solid transparent;box-shadow:0 6px 12px rgba(0,0,0,0.04)}
+		.panel-head{display:flex;justify-content:space-between;align-items:center}
+		.panel-head h3{margin:0;font-size:1rem}
+		.clear-log{background:transparent;border:1px solid #eee;padding:6px;border-radius:6px;cursor:pointer}
+		.event-control{display:inline-block;padding:8px;border-radius:6px;border:1px solid #eee;background:#fafafa;cursor:pointer}
+		.box{border:1px dashed #e6eef6}
+		.event-log{margin-top:8px;font-size:0.9rem;color:#222;min-height:36px;max-height:120px;overflow:auto;padding:6px;background:#fbfbfb;border-radius:6px;border:1px solid #f0f0f0}
+		.log-entry{padding:3px 0;border-bottom:1px dashed #eee;font-size:0.85rem}
+		.flash{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,0.06)}
+	
+		.accent-click{border-left-color:#3182ce}
+		.accent-dbl{border-left-color:#2b6cb0}
+		.accent-down{border-left-color:#dd6b20}
+		.accent-enter{border-left-color:#38a169}
+		.accent-leave{border-left-color:#805ad5}
+		.accent-move{border-left-color:#0bc5ea}
+		.accent-focus{border-left-color:#e53e3e}
+		.accent-key{border-left-color:#d53f8c}
+		
+		@media (max-width:520px){.event-control{width:100%;text-align:center}}
+	</style>
+</head>
+<body>
+	<main class="container">
+		<h1>Laboratorio 2 — Eventos interactivos</h1>
+
+		<section id="event-panels">
+			<section class="event-panel accent-click" data-event="click">
+				<div class="panel-head"><h3>click</h3><button class="clear-log">Limpiar</button></div>
+				<p>Click sobre un elemento.</p>
+				<button class="event-control">Haz click</button>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-dbl" data-event="dblclick">
+				<div class="panel-head"><h3>dblclick</h3><button class="clear-log">Limpiar</button></div>
+				<p>Doble click sobre un elemento.</p>
+				<button class="event-control">Doble click aquí</button>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-down" data-event="mousedown">
+				<div class="panel-head"><h3>mousedown</h3><button class="clear-log">Limpiar</button></div>
+				<p>Se pulsa un botón del ratón sobre un elemento.</p>
+				<button class="event-control">Mantén pulsado</button>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-enter" data-event="mouseenter">
+				<div class="panel-head"><h3>mouseenter</h3><button class="clear-log">Limpiar</button></div>
+				<p>El puntero entra en el área del elemento.</p>
+				<div class="event-control box" style="height:56px;display:flex;align-items:center;justify-content:center">Pasa el cursor</div>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-leave" data-event="mouseleave">
+				<div class="panel-head"><h3>mouseleave</h3><button class="clear-log">Limpiar</button></div>
+				<p>El puntero sale del área del elemento.</p>
+				<div class="event-control box" style="height:56px;display:flex;align-items:center;justify-content:center">Retira el cursor</div>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-move" data-event="mousemove">
+				<div class="panel-head"><h3>mousemove</h3><button class="clear-log">Limpiar</button></div>
+				<p>El puntero se mueve sobre el área del elemento (registro de coordenadas).</p>
+				<div class="event-control box" style="height:80px"></div>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-focus" data-event="focus">
+				<div class="panel-head"><h3>focus</h3><button class="clear-log">Limpiar</button></div>
+				<p>Elemento seleccionado (focus). Mantiene estado hasta perderlo.</p>
+				<div class="event-control box" tabindex="0" style="height:56px;display:flex;align-items:center;justify-content:center">Selecciona (focus) aquí</div>
+				<div class="event-log"></div>
+			</section>
+
+			<section class="event-panel accent-key" data-event="keydown">
+				<div class="panel-head"><h3>keydown</h3><button class="clear-log">Limpiar</button></div>
+				<p>Pulsar una tecla (usa el campo para capturar la tecla).</p>
+				<input class="event-control" placeholder="Pulsa una tecla aquí">
+				<div class="event-log"></div>
+			</section>
+		</section>
+
+		<section id="output">
+			<h2>Salida / Registro</h2>
+			<div id="log" aria-live="polite"></div>
+			<pre id="summary"></pre>
+		</section>
+	</main>
+
+	<script src="eljav.js"></script>
+</body>
+</html>
+
